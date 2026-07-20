@@ -27,14 +27,14 @@ const gallery = [
   },
   {
     src: "/images/interior/kitchen.jpg",
-    alt: "Открытая кухня",
+    alt: "Кухня и свет рабочего пространства",
     label: "Кухня",
     span: "md:col-span-5",
   },
   {
-    src: "/images/interior/private.jpg",
-    alt: "Приватная зона",
-    label: "Private",
+    src: "/images/atmosphere/cafe.jpg",
+    alt: "Камерная атмосфера зала",
+    label: "Свет",
     span: "md:col-span-7",
   },
 ];

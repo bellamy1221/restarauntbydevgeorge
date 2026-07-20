@@ -95,6 +95,12 @@ export function Footer() {
                 {s.label}
               </a>
             ))}
+            <a href={restaurant.legal.privacy} className="link-underline">
+              Конфиденциальность
+            </a>
+            <a href={restaurant.legal.terms} className="link-underline">
+              Условия
+            </a>
             <span>{restaurant.legal.entity}</span>
           </div>
         </div>

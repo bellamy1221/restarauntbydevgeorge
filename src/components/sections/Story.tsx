@@ -30,11 +30,11 @@ export function Story() {
         <Reveal className="relative lg:col-span-7" delay={0.1}>
           <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/4] lg:ml-8">
             <Image
-              src="/images/atmosphere/ingredients.jpg"
-              alt="Свежие ингредиенты на столе"
+              src="/images/interior/private.jpg"
+              alt="Вечерняя атмосфера ресторана"
               fill
               sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+              className="object-cover brightness-[0.9] contrast-[1.05] transition-transform duration-700 ease-out hover:scale-[1.03]"
             />
           </div>
           <div className="absolute -bottom-6 left-0 hidden w-48 overflow-hidden border border-paper shadow-xl md:block lg:-left-4 lg:w-56">

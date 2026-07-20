@@ -35,10 +35,8 @@ export function MenuSection() {
               Карта вечера
             </h2>
             <p className="max-w-sm text-sm leading-relaxed text-ink/60">
-              Sample-меню для премиального итальянского ресторана. Все позиции и
-              цены редактируются в{" "}
-              <code className="text-xs">src/content/menu.ts</code>. PDF-меню
-              можно подключить отдельно.
+              Сезонная карта. Состав и доступность позиций могут меняться.
+              Актуальные детали уточняйте у команды зала.
             </p>
           </div>
         </Reveal>

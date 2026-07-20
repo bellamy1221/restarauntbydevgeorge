@@ -58,7 +58,7 @@ export function SignatureDishes() {
                       alt={dish.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      className="object-cover brightness-[0.92] contrast-[1.05] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-80" />
                   </div>

@@ -58,7 +58,7 @@ export function Header() {
           <Button
             href={reserveCta.href}
             variant={scrolled || open ? "primary" : "on-dark"}
-            className="hidden !min-h-10 !px-4 !py-2.5 !text-[0.7rem] sm:inline-flex"
+            className="!hidden !min-h-10 !px-4 !py-2.5 !text-[0.7rem] lg:!inline-flex"
           >
             {reserveCta.label}
           </Button>
