@@ -177,9 +177,22 @@
   .animate-marquee-reverse {
     animation: marquee 48s linear infinite reverse;
   }
+
+  .animate-atmosphere-belt {
+    animation: atmosphere-belt 55s linear infinite;
+  }
 }
 
 @keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes atmosphere-belt {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -203,7 +216,8 @@
   }
 
   .animate-marquee,
-  .animate-marquee-reverse {
+  .animate-marquee-reverse,
+  .animate-atmosphere-belt {
     animation: none !important;
   }
 }
