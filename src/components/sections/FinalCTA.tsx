@@ -8,7 +8,6 @@ import { copy } from "@/content/copy";
 import { restaurant } from "@/content/restaurant";
 import { reserveCta } from "@/content/navigation";
 import Image from "next/image";
-import { LiquidBlob } from "@/components/motion/LiquidBlob";
 
 export function FinalCTA() {
   return (
@@ -27,10 +26,6 @@ export function FinalCTA() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/35" />
       </div>
-      <LiquidBlob
-        variant="wine"
-        className="bottom-[-20%] left-[-10%] h-[70%] w-[70%] opacity-50"
-      />
 
       <div className="relative flex min-h-[80svh] items-end section-pad">
         <div className="container-wide pb-8">

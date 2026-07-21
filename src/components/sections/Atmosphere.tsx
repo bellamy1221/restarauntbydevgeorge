@@ -128,7 +128,7 @@ export function Atmosphere() {
             <figure
               key={item.src}
               className={cn(
-                "relative overflow-hidden",
+                "relative overflow-hidden rounded-[1.75rem]",
                 i % 3 === 0
                   ? "h-[70vh] w-[42vw]"
                   : i % 3 === 1
@@ -165,7 +165,7 @@ export function Atmosphere() {
           {gallery.map((item) => (
             <figure
               key={item.src}
-              className="relative aspect-[4/5] w-[85%] shrink-0 snap-center overflow-hidden"
+              className="relative aspect-[4/5] w-[85%] shrink-0 snap-center overflow-hidden rounded-[1.5rem]"
             >
               <Image
                 src={item.src}

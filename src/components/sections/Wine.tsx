@@ -11,7 +11,7 @@ export function Wine() {
     >
       <div className="container-wide grid gap-12 lg:grid-cols-12 lg:items-center">
         <Reveal className="lg:col-span-6">
-          <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/4]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-[5/4]">
             <Image
               src="/images/wine/pour.jpg"
               alt="Наливание вина"

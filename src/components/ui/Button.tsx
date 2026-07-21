@@ -32,7 +32,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3.5 text-[0.8125rem] font-medium tracking-[0.06em] uppercase transition-colors duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-12",
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-[0.05em] uppercase transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-12",
     variants[variant],
     className,
   );

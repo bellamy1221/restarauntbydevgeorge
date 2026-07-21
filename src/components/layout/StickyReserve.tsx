@@ -33,7 +33,7 @@ export function StickyReserve() {
     >
       <a
         href={reserveCta.href}
-        className="flex min-h-12 w-full items-center justify-center rounded-sm bg-ink text-[0.75rem] font-medium uppercase tracking-[0.12em] text-paper shadow-lg"
+        className="flex min-h-12 w-full items-center justify-center rounded-full bg-ink text-[0.75rem] font-medium uppercase tracking-[0.12em] text-paper shadow-[0_16px_40px_rgba(28,22,18,0.28)]"
       >
         {reserveCta.label}
       </a>

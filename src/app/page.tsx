@@ -11,6 +11,7 @@ import { Practical } from "@/components/sections/Practical";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Marquee } from "@/components/motion/Marquee";
+import { Ritual } from "@/components/sections/Ritual";
 
 export default function Home() {
   return (
@@ -26,8 +27,10 @@ export default function Home() {
           "Сезонная кухня",
           "Тихий свет",
         ]}
+        className="border-ink/8 bg-paper"
       />
       <Story />
+      <Ritual />
       <SignatureDishes />
       <MenuSection />
       <Chef />

@@ -68,7 +68,7 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
               aria-selected={zone === id}
               data-cursor="hover"
               className={cn(
-                "rounded-sm px-3 py-2 text-[0.65rem] uppercase tracking-[0.12em] transition-colors",
+                "rounded-full px-3 py-2 text-[0.65rem] uppercase tracking-[0.12em] transition-colors",
                 zone === id
                   ? "bg-ink text-paper"
                   : "bg-ink/[0.04] text-ink/55 hover:text-ink",
@@ -83,7 +83,7 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
 
       <div className="grid gap-4 lg:grid-cols-[1.4fr_0.8fr]">
         <div
-          className="relative aspect-[4/3] overflow-hidden rounded-sm border border-ink/10 bg-[linear-gradient(145deg,#ebe3d7_0%,#ddd2c3_45%,#d4c7b6_100%)]"
+          className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-ink/10 bg-[linear-gradient(145deg,#ebe3d7_0%,#ddd2c3_45%,#d4c7b6_100%)]"
           role="img"
           aria-label="План зала VINCENZO"
         >
@@ -121,7 +121,7 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
                 aria-label={`Стол ${table.label}, ${table.seats} мест, ${zoneLabels[table.zone]}, ${statusLabel[table.status]}`}
                 className={cn(
                   "absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  table.shape === "round" ? "rounded-full" : "rounded-[0.35rem]",
+                  table.shape === "round" ? "rounded-full" : "rounded-2xl",
                   disabled && "cursor-not-allowed opacity-35",
                   !disabled && "hover:scale-105 hover:shadow-[0_12px_40px_rgba(28,22,18,0.18)]",
                   active
@@ -153,7 +153,7 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
           })}
         </div>
 
-        <div className="flex flex-col justify-between border border-ink/10 bg-paper p-5 md:p-6">
+        <div className="flex flex-col justify-between rounded-[1.75rem] border border-ink/10 bg-paper p-5 md:p-6">
           <div>
             <p className="text-[0.7rem] uppercase tracking-[0.16em] text-stone">
               Карточка стола

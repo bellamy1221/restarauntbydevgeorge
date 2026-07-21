@@ -10,7 +10,7 @@ export function Chef() {
     >
       <div className="container-wide grid items-center gap-12 lg:grid-cols-12">
         <Reveal className="order-2 lg:order-1 lg:col-span-6">
-          <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
             <Image
               src="/images/chef/hands.jpg"
               alt="Работа на кухне — руки шефа"

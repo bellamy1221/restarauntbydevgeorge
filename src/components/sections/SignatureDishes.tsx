@@ -1,7 +1,6 @@
 "use client";
 
 import { TextReveal } from "@/components/motion/TextReveal";
-import { LiquidBlob } from "@/components/motion/LiquidBlob";
 import { copy } from "@/content/copy";
 import { featuredDishes, formatPrice } from "@/content/menu";
 import { restaurant } from "@/content/restaurant";
@@ -83,11 +82,6 @@ export function SignatureDishes() {
       className="relative overflow-hidden bg-ink text-paper"
       aria-labelledby="signature-title"
     >
-      <LiquidBlob
-        variant="warm"
-        className="right-[-25%] top-[10%] h-[60%] w-[60%] opacity-40"
-      />
-
       <div className="section-pad relative">
         <div className="container-wide">
           <p className="text-[0.7rem] uppercase tracking-[0.18em] text-metal">
@@ -104,7 +98,7 @@ export function SignatureDishes() {
 
           {/* Desktop pinned experience */}
           <div className="relative mt-14 hidden min-h-[70vh] lg:grid lg:grid-cols-12 lg:gap-10">
-            <div className="relative col-span-7 overflow-hidden">
+            <div className="relative col-span-7 overflow-hidden rounded-[2rem]">
               {dishes.map((dish, i) => (
                 <div
                   key={dish.id}
@@ -157,7 +151,7 @@ export function SignatureDishes() {
             {dishes.map((dish, i) => (
               <article key={dish.id}>
                 {dish.image && (
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem]">
                     <Image
                       src={dish.image}
                       alt={dish.name}

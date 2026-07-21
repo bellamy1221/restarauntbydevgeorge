@@ -2,7 +2,6 @@
 
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
-import { LiquidBlob } from "@/components/motion/LiquidBlob";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Button } from "@/components/ui/Button";
 import { TableMap } from "@/components/reservation/TableMap";
@@ -120,11 +119,6 @@ export function Reservation() {
       className="relative overflow-hidden section-pad bg-paper-deep"
       aria-labelledby="reservation-title"
     >
-      <LiquidBlob
-        variant="olive"
-        className="pointer-events-none left-[-30%] top-[-10%] h-[50%] w-[55%] opacity-50"
-      />
-
       <div className="container-wide relative">
         <Reveal>
           <p className="text-[0.7rem] uppercase tracking-[0.18em] text-stone">
@@ -152,7 +146,7 @@ export function Reservation() {
               aria-selected={step === s.id}
               data-cursor="hover"
               className={cn(
-                "rounded-sm px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.14em] transition-colors",
+                "rounded-full px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.14em] transition-colors",
                 step === s.id
                   ? "bg-ink text-paper"
                   : "bg-transparent text-ink/45 hover:text-ink",
@@ -199,7 +193,7 @@ export function Reservation() {
           </div>
 
           <div className={cn(step !== 2 && "hidden")}>
-            <div className="border border-ink/10 bg-paper p-6 md:p-10">
+            <div className="rounded-[1.75rem] border border-ink/10 bg-paper p-6 md:p-10">
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Дата" error={errors.date} htmlFor="date">
                   <input
@@ -392,7 +386,7 @@ function Field({
 
 function inputClass(error?: string) {
   return cn(
-    "w-full rounded-sm border bg-transparent px-3 py-3 text-sm text-ink outline-none transition-colors focus:border-ink/50",
+    "w-full rounded-2xl border bg-transparent px-3 py-3 text-sm text-ink outline-none transition-colors focus:border-ink/50",
     error ? "border-burgundy/60" : "border-ink/15",
   );
 }
