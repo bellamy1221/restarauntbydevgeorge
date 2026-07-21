@@ -10,11 +10,23 @@ import { Reservation } from "@/components/sections/Reservation";
 import { Practical } from "@/components/sections/Practical";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Marquee } from "@/components/motion/Marquee";
 
 export default function Home() {
   return (
     <div className="w-full max-w-full overflow-x-hidden">
       <Hero />
+      <Marquee
+        items={[
+          "Pasta fresca",
+          "Crudo",
+          "Vino italiano",
+          "Aperitivo",
+          "Private dining",
+          "Сезонная кухня",
+          "Тихий свет",
+        ]}
+      />
       <Story />
       <SignatureDishes />
       <MenuSection />

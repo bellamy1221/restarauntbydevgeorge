@@ -1,84 +1,187 @@
 "use client";
 
-import { Reveal } from "@/components/motion/Reveal";
+import { TextReveal } from "@/components/motion/TextReveal";
+import { LiquidBlob } from "@/components/motion/LiquidBlob";
 import { copy } from "@/content/copy";
 import { featuredDishes, formatPrice } from "@/content/menu";
 import { restaurant } from "@/content/restaurant";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { useRef } from "react";
 
-const layouts = [
-  "md:col-span-7",
-  "md:col-span-5 md:mt-24",
-  "md:col-span-5",
-  "md:col-span-7 md:-mt-16",
-];
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function SignatureDishes() {
+  const root = useRef<HTMLElement>(null);
   const dishes = featuredDishes.slice(0, 4);
+
+  useGSAP(
+    () => {
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        if (reduced) return;
+
+        const panels = gsap.utils.toArray<HTMLElement>("[data-dish-panel]");
+        const images = gsap.utils.toArray<HTMLElement>("[data-dish-visual]");
+
+        gsap.set(panels.slice(1), { autoAlpha: 0, y: 40 });
+        gsap.set(images.slice(1), { autoAlpha: 0, scale: 1.08 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: () => `+=${panels.length * 90}%`,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
+
+        panels.forEach((_, i) => {
+          if (i === 0) return;
+          const step = i;
+          tl.to(
+            panels[step - 1],
+            { autoAlpha: 0, y: -30, duration: 0.45 },
+            step,
+          )
+            .to(
+              images[step - 1],
+              { autoAlpha: 0, scale: 0.96, duration: 0.45 },
+              step,
+            )
+            .fromTo(
+              panels[step],
+              { autoAlpha: 0, y: 50 },
+              { autoAlpha: 1, y: 0, duration: 0.55 },
+              step + 0.05,
+            )
+            .fromTo(
+              images[step],
+              { autoAlpha: 0, scale: 1.1 },
+              { autoAlpha: 1, scale: 1, duration: 0.65 },
+              step + 0.05,
+            );
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: root },
+  );
 
   return (
     <section
-      className="section-pad bg-ink text-paper"
+      ref={root}
+      className="relative overflow-hidden bg-ink text-paper"
       aria-labelledby="signature-title"
     >
-      <div className="container-wide">
-        <Reveal>
+      <LiquidBlob
+        variant="warm"
+        className="right-[-25%] top-[10%] h-[60%] w-[60%] opacity-40"
+      />
+
+      <div className="section-pad relative">
+        <div className="container-wide">
           <p className="text-[0.7rem] uppercase tracking-[0.18em] text-metal">
             Signature
           </p>
-          <h2
-            id="signature-title"
-            className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
-          >
-            {copy.signature.title}
-          </h2>
+          <TextReveal
+            as="h2"
+            text={copy.signature.title}
+            className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
+          />
           <p className="mt-5 max-w-xl text-base text-paper/65">
             {copy.signature.lead}
           </p>
-        </Reveal>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-12 md:gap-8">
-          {dishes.map((dish, i) => (
-            <Reveal
-              key={dish.id}
-              className={cn(layouts[i] ?? "md:col-span-6")}
-              delay={i * 0.05}
-            >
-              <article className="group">
-                {dish.image && (
-                  <div
-                    className={cn(
-                      "relative overflow-hidden",
-                      i % 2 === 0 ? "aspect-[4/5]" : "aspect-[5/4]",
-                    )}
-                  >
+          {/* Desktop pinned experience */}
+          <div className="relative mt-14 hidden min-h-[70vh] lg:grid lg:grid-cols-12 lg:gap-10">
+            <div className="relative col-span-7 overflow-hidden">
+              {dishes.map((dish, i) => (
+                <div
+                  key={dish.id}
+                  data-dish-visual
+                  className="absolute inset-0 overflow-hidden"
+                  style={{ zIndex: dishes.length - i }}
+                >
+                  {dish.image && (
                     <Image
                       src={dish.image}
                       alt={dish.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover brightness-[0.92] contrast-[1.05] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      sizes="55vw"
+                      className="object-cover brightness-[0.9] contrast-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-80" />
-                  </div>
-                )}
-                <div className="mt-5 flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-display text-2xl tracking-wide md:text-3xl">
-                      {dish.name}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-paper/60">
-                      {dish.sensory ?? dish.description}
-                    </p>
-                  </div>
-                  <p className="shrink-0 font-mono text-sm text-metal">
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/20" />
+                </div>
+              ))}
+            </div>
+
+            <div className="relative col-span-5 flex items-center">
+              {dishes.map((dish, i) => (
+                <article
+                  key={dish.id}
+                  data-dish-panel
+                  className="absolute inset-x-0"
+                  style={{ zIndex: dishes.length - i }}
+                >
+                  <p className="font-mono text-xs text-metal">
+                    {String(i + 1).padStart(2, "0")} /{" "}
+                    {String(dishes.length).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-4 font-display text-4xl tracking-wide xl:text-5xl">
+                    {dish.name}
+                  </h3>
+                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/65">
+                    {dish.sensory ?? dish.description}
+                  </p>
+                  <p className="mt-6 font-mono text-sm text-metal">
                     {formatPrice(dish.price, restaurant.currency)}
                   </p>
-                </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile stacked */}
+          <div className="mt-12 space-y-14 lg:hidden">
+            {dishes.map((dish, i) => (
+              <article key={dish.id}>
+                {dish.image && (
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={dish.image}
+                      alt={dish.name}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <p className="mt-4 font-mono text-xs text-metal">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 font-display text-3xl tracking-wide">
+                  {dish.name}
+                </h3>
+                <p className="mt-3 text-sm text-paper/65">
+                  {dish.sensory ?? dish.description}
+                </p>
+                <p className="mt-4 font-mono text-sm text-metal">
+                  {formatPrice(dish.price, restaurant.currency)}
+                </p>
               </article>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

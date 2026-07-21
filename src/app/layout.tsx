@@ -4,6 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { StickyReserve } from "@/components/layout/StickyReserve";
+import { CustomCursor } from "@/components/motion/CustomCursor";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { restaurant } from "@/content/restaurant";
 import "./globals.css";
@@ -96,6 +98,8 @@ export default function RootLayout({
       <body className="min-h-full bg-paper text-ink">
         <JsonLd />
         <SmoothScroll>
+          <ScrollProgress />
+          <CustomCursor />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:px-4 focus:py-2"
