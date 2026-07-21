@@ -17,7 +17,7 @@ export function FAQ() {
           </p>
           <h2
             id="faq-title"
-            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.25rem)] leading-[1.05] tracking-tight text-ink"
+            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-ink"
           >
             Коротко о важном
           </h2>

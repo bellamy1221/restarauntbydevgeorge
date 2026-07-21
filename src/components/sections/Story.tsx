@@ -20,9 +20,9 @@ export function Story() {
           <TextReveal
             as="h2"
             text={copy.story.title}
-            className="mt-4 max-w-md font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight text-ink"
+            className="mt-4 max-w-md font-display text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-ink"
           />
-          <div className="mt-8 space-y-5 text-base leading-relaxed text-ink-soft/85 md:text-lg">
+          <div className="mt-8 space-y-5 text-[1.05rem] leading-relaxed text-ink/80 md:text-lg">
             {copy.story.body.map((p) => (
               <p key={p}>{p}</p>
             ))}

@@ -160,7 +160,7 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
             </p>
             {focus ? (
               <div className="mt-4 space-y-3">
-                <h3 className="font-display text-3xl tracking-wide text-ink">
+                <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-ink">
                   Стол {focus.label}
                 </h3>
                 <p className="text-sm text-ink/60">

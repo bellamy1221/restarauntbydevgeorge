@@ -151,21 +151,21 @@ export function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-[var(--gutter)] pb-16 pt-28 text-center">
         <p
           data-hero-fade
-          className="mb-6 text-[0.72rem] font-medium uppercase tracking-[0.28em] text-paper/70"
+          className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-paper/80"
         >
           Современная итальянская кухня
         </p>
 
         <h1
           data-hero-fade
-          className="font-display text-[clamp(3.4rem,10vw,8rem)] font-medium uppercase leading-[0.88] tracking-[0.14em] text-paper"
+          className="font-display text-[clamp(3.4rem,10vw,8rem)] font-bold uppercase leading-[0.88] tracking-[0.1em] text-paper"
         >
           Vincenzo
         </h1>
 
         <p
           data-hero-fade
-          className="mt-6 max-w-xl font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-snug text-paper/90"
+          className="font-display-italic mt-6 max-w-xl text-[clamp(1.45rem,2.8vw,2.15rem)] leading-snug text-paper/95"
         >
           {restaurant.tagline}
         </p>
@@ -176,7 +176,7 @@ export function Hero() {
 
         <p
           data-hero-fade
-          className="mt-6 max-w-md text-sm leading-relaxed text-paper/70"
+          className="mt-6 max-w-md text-[0.95rem] font-medium leading-relaxed text-paper/75"
         >
           {scenes[mode].line}
         </p>

@@ -33,7 +33,7 @@ export function FinalCTA() {
             <TextReveal
               as="h2"
               text={copy.final.title}
-              className="max-w-3xl font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[1.02] tracking-tight"
+              className="max-w-3xl font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[1.02] tracking-[-0.02em]"
             />
             <p className="mt-5 max-w-md text-base text-paper/70">
               {copy.final.lead}

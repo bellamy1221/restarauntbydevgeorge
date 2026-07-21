@@ -39,7 +39,7 @@ export function AtmosphereToggle({
             aria-pressed={active}
             onClick={() => onChange(opt.id)}
             className={cn(
-              "relative min-w-[7.5rem] rounded-full px-5 py-2.5 text-[0.78rem] font-medium tracking-[0.04em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "relative min-w-[7.5rem] rounded-full px-5 py-2.5 text-[0.78rem] font-semibold tracking-[0.06em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
               active
                 ? "bg-paper text-ink shadow-sm"
                 : "text-paper/75 hover:text-paper",

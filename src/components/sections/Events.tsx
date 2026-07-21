@@ -31,7 +31,7 @@ export function Events() {
             </p>
             <h2
               id="events-title"
-              className="mt-4 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
+              className="mt-4 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.02em]"
             >
               {copy.events.title}
             </h2>

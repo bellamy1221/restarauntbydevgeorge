@@ -90,7 +90,7 @@ export function SignatureDishes() {
           <TextReveal
             as="h2"
             text={copy.signature.title}
-            className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
+            className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.02em]"
           />
           <p className="mt-5 max-w-xl text-base text-paper/65">
             {copy.signature.lead}
@@ -132,10 +132,10 @@ export function SignatureDishes() {
                     {String(i + 1).padStart(2, "0")} /{" "}
                     {String(dishes.length).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-4 font-display text-4xl tracking-wide xl:text-5xl">
+                  <h3 className="mt-4 font-display text-4xl font-semibold tracking-[-0.02em] xl:text-5xl">
                     {dish.name}
                   </h3>
-                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/65">
+                  <p className="mt-4 max-w-sm text-[0.95rem] font-medium leading-relaxed text-paper/70">
                     {dish.sensory ?? dish.description}
                   </p>
                   <p className="mt-6 font-mono text-sm text-metal">
@@ -164,10 +164,10 @@ export function SignatureDishes() {
                 <p className="mt-4 font-mono text-xs text-metal">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-2 font-display text-3xl tracking-wide">
+                <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">
                   {dish.name}
                 </h3>
-                <p className="mt-3 text-sm text-paper/65">
+                <p className="mt-3 text-[0.95rem] font-medium text-paper/70">
                   {dish.sensory ?? dish.description}
                 </p>
                 <p className="mt-4 font-mono text-sm text-metal">

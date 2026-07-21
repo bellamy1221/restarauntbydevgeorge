@@ -28,7 +28,7 @@ export function Marquee({ items, className, reverse }: MarqueeProps) {
         {row.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="font-display text-2xl tracking-[0.12em] text-ink/35 md:text-3xl"
+            className="font-display text-2xl italic tracking-[0.08em] text-ink/40 md:text-3xl"
           >
             {item}
             <span className="mx-6 text-burgundy/40">·</span>

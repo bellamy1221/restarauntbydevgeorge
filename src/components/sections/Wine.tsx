@@ -28,7 +28,7 @@ export function Wine() {
           </p>
           <h2
             id="wine-title"
-            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] tracking-tight text-ink"
+            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-ink"
           >
             {copy.wine.title}
           </h2>

@@ -30,7 +30,7 @@ export function MenuSection() {
           <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2
               id="menu-title"
-              className="max-w-xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight text-ink"
+              className="max-w-xl font-display text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-ink"
             >
               Карта вечера
             </h2>
@@ -96,7 +96,7 @@ function MenuPanel({ category }: { category: MenuCategory }) {
           >
             <div>
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <h3 className="font-display text-xl tracking-wide text-ink md:text-2xl">
+                <h3 className="font-display text-xl font-semibold tracking-[-0.01em] text-ink md:text-2xl">
                   {item.name}
                 </h3>
                 {item.seasonal && (
@@ -105,7 +105,7 @@ function MenuPanel({ category }: { category: MenuCategory }) {
                   </span>
                 )}
               </div>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink/55">
+              <p className="mt-2 max-w-xl text-sm font-medium leading-relaxed text-ink/65">
                 {item.description}
               </p>
               {item.dietary && item.dietary.length > 0 && (
@@ -114,7 +114,7 @@ function MenuPanel({ category }: { category: MenuCategory }) {
                 </p>
               )}
             </div>
-            <p className="font-mono text-sm text-ink/70">
+            <p className="font-mono text-sm font-medium text-ink/80">
               {formatPrice(item.price, restaurant.currency)}
             </p>
           </li>

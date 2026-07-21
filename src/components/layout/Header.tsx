@@ -47,7 +47,7 @@ export function Header() {
             <a
               key={item.id}
               href={item.href}
-              className="text-[0.72rem] font-medium uppercase tracking-[0.12em] opacity-80 transition-opacity hover:opacity-100"
+              className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] opacity-80 transition-opacity hover:opacity-100"
             >
               {item.label}
             </a>

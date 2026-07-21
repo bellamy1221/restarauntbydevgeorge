@@ -109,7 +109,7 @@ export function Atmosphere() {
             <TextReveal
               as="h2"
               text={copy.atmosphere.title}
-              className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
+              className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.02em]"
             />
             <p className="mt-5 max-w-lg text-base text-paper/65">
               {copy.atmosphere.lead}

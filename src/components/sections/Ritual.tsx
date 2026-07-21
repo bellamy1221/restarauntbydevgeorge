@@ -77,7 +77,7 @@ export function Ritual() {
           <TextReveal
             as="h2"
             text="Ужин как последовательность, а не спектакль"
-            className="mt-4 max-w-3xl font-display text-[clamp(2.1rem,4.8vw,3.6rem)] leading-[1.08] tracking-tight"
+            className="mt-4 max-w-3xl font-display text-[clamp(2.1rem,4.8vw,3.6rem)] font-semibold leading-[1.08] tracking-[-0.02em]"
           />
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-paper/60 md:text-base">
             Не меню ради меню — спокойный сценарий вечера. Можно пройти целиком
@@ -93,10 +93,10 @@ export function Ritual() {
               className="group rounded-[1.5rem] border border-paper/10 bg-paper/[0.04] p-5 transition-colors duration-500 hover:border-paper/25 hover:bg-paper/[0.07] md:min-h-[18rem] md:p-6"
             >
               <p className="font-mono text-[0.7rem] text-metal">{step.n}</p>
-              <h3 className="mt-6 font-display text-2xl tracking-wide md:text-[1.65rem]">
+              <h3 className="mt-6 font-display text-2xl font-semibold tracking-[-0.01em] md:text-[1.7rem]">
                 {step.title}
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-paper/55">
+              <p className="mt-4 text-sm font-medium leading-relaxed text-paper/65">
                 {step.text}
               </p>
             </li>

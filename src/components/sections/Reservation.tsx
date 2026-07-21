@@ -127,7 +127,7 @@ export function Reservation() {
           <TextReveal
             as="h2"
             text={copy.reservation.title}
-            className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-tight text-ink"
+            className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-ink"
           />
           <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/65">
             {copy.reservation.lead}

@@ -27,11 +27,11 @@ export function Chef() {
           </p>
           <h2
             id="chef-title"
-            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] tracking-tight text-ink"
+            className="mt-4 font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-ink"
           >
             {copy.chef.title}
           </h2>
-          <p className="mt-6 font-display text-2xl text-burgundy">
+          <p className="mt-6 font-display-italic text-2xl text-burgundy md:text-3xl">
             {copy.chef.name}
           </p>
           <p className="mt-1 text-xs uppercase tracking-[0.14em] text-stone">
