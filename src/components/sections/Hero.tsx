@@ -20,13 +20,13 @@ const scenes = {
     src: "/images/hero/lunch.jpg",
     alt: "Светлый зал VINCENZO днём",
     line: "Светлый зал. Лёгкий обед. Спокойный ритм.",
-    overlay: "from-ink/35 via-ink/25 to-ink/55",
+    overlay: "from-ink/20 via-ink/10 to-ink/40",
   },
   cena: {
     src: "/images/hero/dinner.jpg",
     alt: "Вечерний стол при свечах",
     line: "Тихий свет. Точная кухня. Долгий ужин.",
-    overlay: "from-ink/55 via-ink/40 to-ink/80",
+    overlay: "from-ink/60 via-ink/45 to-ink/82",
   },
 } as const;
 
