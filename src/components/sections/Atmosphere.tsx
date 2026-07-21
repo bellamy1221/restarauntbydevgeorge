@@ -60,18 +60,22 @@ export function Atmosphere() {
 
       mm.add("(min-width: 1024px)", () => {
         if (reduced || !track.current || !root.current) return;
-        const amount = track.current.scrollWidth - window.innerWidth;
+
+        const getTravel = () =>
+          Math.max((track.current?.scrollWidth ?? 0) - window.innerWidth, 0);
+
         gsap.to(track.current, {
-          x: () => -Math.max(amount, 0),
+          x: () => -getTravel(),
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
             start: "top top",
-            end: () => `+=${Math.max(amount, window.innerHeight)}`,
+            end: () => `+=${Math.max(getTravel(), window.innerHeight)}`,
             pin: true,
             scrub: 1,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            pinSpacing: true,
           },
         });
       });
@@ -97,7 +101,7 @@ export function Atmosphere() {
     <section
       ref={root}
       id="atmosphere"
-      className="relative overflow-hidden bg-ink text-paper"
+      className="relative overflow-x-clip bg-ink text-paper"
       aria-labelledby="atmosphere-title"
     >
       <div className="section-pad pb-8 lg:pb-0">

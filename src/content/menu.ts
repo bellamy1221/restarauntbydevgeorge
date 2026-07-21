@@ -255,7 +255,7 @@ export const menuCategories: MenuCategory[] = [
       {
         id: "etna-bottle",
         name: "Etna Bianco — бутылка",
-        description: "Вулканическая минеральность. Sample позиция.",
+        description: "Вулканическая минеральность. Демо-позиция карты.",
         price: 6900,
         seasonal: true,
       },

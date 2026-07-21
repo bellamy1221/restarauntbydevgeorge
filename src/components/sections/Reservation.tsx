@@ -10,7 +10,7 @@ import { restaurant } from "@/content/restaurant";
 import type { FloorTable } from "@/content/tables";
 import { floorTables } from "@/content/tables";
 import { cn } from "@/lib/utils";
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 
 type FormState = {
   date: string;
@@ -21,9 +21,11 @@ type FormState = {
   comment: string;
   eventType: string;
   tableId: string;
+  /** Honeypot — leave empty */
+  website: string;
 };
 
-type Status = "idle" | "loading" | "prepared" | "error";
+type Status = "idle" | "loading" | "success" | "error";
 
 const initial: FormState = {
   date: "",
@@ -34,6 +36,7 @@ const initial: FormState = {
   comment: "",
   eventType: "",
   tableId: "",
+  website: "",
 };
 
 function todayISO() {
@@ -55,6 +58,7 @@ export function Reservation() {
   );
   const [status, setStatus] = useState<Status>("idle");
   const [step, setStep] = useState<1 | 2>(1);
+  const submittingRef = useRef(false);
   const minDate = useMemo(() => todayISO(), []);
 
   const selectedTable = floorTables.find((t) => t.id === form.tableId);
@@ -62,6 +66,7 @@ export function Reservation() {
   const onChange = (key: keyof FormState, value: string) => {
     setForm((f) => ({ ...f, [key]: value }));
     setErrors((e) => ({ ...e, [key]: undefined }));
+    if (status === "error" || status === "success") setStatus("idle");
   };
 
   const onSelectTable = (table: FloorTable | null) => {
@@ -91,25 +96,35 @@ export function Reservation() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current || status === "loading") return;
     if (!validate()) {
       setStep(2);
       return;
     }
+    submittingRef.current = true;
     setStatus("loading");
     try {
       const res = await fetch(restaurant.booking.integrationEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
+          date: form.date,
+          time: form.time,
           guests: Number(form.guests),
-          provider: restaurant.booking.provider,
+          name: form.name,
+          phone: form.phone,
+          comment: form.comment,
+          eventType: form.eventType,
+          tableId: form.tableId,
+          website: form.website,
         }),
       });
       if (!res.ok) throw new Error("request failed");
-      setStatus("prepared");
+      setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -126,8 +141,9 @@ export function Reservation() {
           </p>
           <TextReveal
             as="h2"
+            id="reservation-title"
             text={copy.reservation.title}
-            className="mt-4 max-w-2xl font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-ink"
+            className="mt-4 max-w-2xl font-display text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-ink"
           />
           <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/65">
             {copy.reservation.lead}
@@ -144,7 +160,6 @@ export function Reservation() {
               type="button"
               role="tab"
               aria-selected={step === s.id}
-              data-cursor="hover"
               className={cn(
                 "rounded-full px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.14em] transition-colors",
                 step === s.id
@@ -159,6 +174,23 @@ export function Reservation() {
         </div>
 
         <form onSubmit={onSubmit} noValidate className="mt-10">
+          {/* Honeypot — hidden from users, visible to bots */}
+          <div
+            className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+            aria-hidden="true"
+          >
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(e) => onChange("website", e.target.value)}
+            />
+          </div>
+
           <div className={cn(step !== 1 && "hidden")}>
             <TableMap
               guests={Number(form.guests) || 2}
@@ -203,6 +235,8 @@ export function Reservation() {
                     value={form.date}
                     onChange={(e) => onChange("date", e.target.value)}
                     className={inputClass(errors.date)}
+                    aria-invalid={Boolean(errors.date)}
+                    aria-describedby={errors.date ? "date-error" : undefined}
                     required
                   />
                 </Field>
@@ -213,6 +247,8 @@ export function Reservation() {
                     value={form.time}
                     onChange={(e) => onChange("time", e.target.value)}
                     className={inputClass(errors.time)}
+                    aria-invalid={Boolean(errors.time)}
+                    aria-describedby={errors.time ? "time-error" : undefined}
                     required
                   >
                     <option value="">Выберите</option>
@@ -233,6 +269,8 @@ export function Reservation() {
                     value={form.guests}
                     onChange={(e) => onChange("guests", e.target.value)}
                     className={inputClass(errors.guests)}
+                    aria-invalid={Boolean(errors.guests)}
+                    aria-describedby={errors.guests ? "guests-error" : undefined}
                     required
                   />
                 </Field>
@@ -261,6 +299,8 @@ export function Reservation() {
                     value={form.name}
                     onChange={(e) => onChange("name", e.target.value)}
                     className={inputClass(errors.name)}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                     required
                   />
                 </Field>
@@ -274,6 +314,8 @@ export function Reservation() {
                     value={form.phone}
                     onChange={(e) => onChange("phone", e.target.value)}
                     className={inputClass(errors.phone)}
+                    aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     required
                   />
                 </Field>
@@ -307,6 +349,7 @@ export function Reservation() {
                     type="button"
                     variant="secondary"
                     onClick={() => setStep(1)}
+                    disabled={status === "loading"}
                   >
                     Назад к плану
                   </Button>
@@ -321,7 +364,7 @@ export function Reservation() {
                 </p>
               </div>
 
-              {status === "prepared" && (
+              {status === "success" && (
                 <p
                   role="status"
                   className="mt-6 border border-olive/30 bg-olive/5 px-4 py-3 text-sm text-olive-deep"
@@ -376,7 +419,11 @@ function Field({
       </label>
       {children}
       {error && (
-        <p className="mt-1.5 text-xs text-burgundy" role="alert">
+        <p
+          id={`${htmlFor}-error`}
+          className="mt-1.5 text-xs text-burgundy"
+          role="alert"
+        >
           {error}
         </p>
       )}
@@ -386,7 +433,7 @@ function Field({
 
 function inputClass(error?: string) {
   return cn(
-    "w-full rounded-2xl border bg-transparent px-3 py-3 text-sm text-ink outline-none transition-colors focus:border-ink/50",
+    "w-full rounded-2xl border bg-transparent px-3 py-3 text-base text-ink outline-none transition-colors focus:border-ink/50 sm:text-sm",
     error ? "border-burgundy/60" : "border-ink/15",
   );
 }

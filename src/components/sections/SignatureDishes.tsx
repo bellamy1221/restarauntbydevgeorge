@@ -24,7 +24,7 @@ export function SignatureDishes() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
-        if (reduced) return;
+        if (reduced || !root.current) return;
 
         const panels = gsap.utils.toArray<HTMLElement>("[data-dish-panel]");
         const images = gsap.utils.toArray<HTMLElement>("[data-dish-visual]");
@@ -40,6 +40,8 @@ export function SignatureDishes() {
             pin: true,
             scrub: 1,
             anticipatePin: 1,
+            invalidateOnRefresh: true,
+            pinSpacing: true,
           },
         });
 
@@ -79,10 +81,10 @@ export function SignatureDishes() {
   return (
     <section
       ref={root}
-      className="relative overflow-hidden bg-ink text-paper"
+      className="relative bg-ink text-paper"
       aria-labelledby="signature-title"
     >
-      <div className="section-pad relative">
+      <div className="section-pad relative overflow-x-clip">
         <div className="container-wide">
           <p className="text-[0.7rem] uppercase tracking-[0.18em] text-metal">
             Signature

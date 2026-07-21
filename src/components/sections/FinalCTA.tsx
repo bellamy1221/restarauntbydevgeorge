@@ -12,6 +12,7 @@ import Image from "next/image";
 export function FinalCTA() {
   return (
     <section
+      id="final-cta"
       className="relative min-h-[80svh] overflow-hidden bg-ink text-paper"
       aria-labelledby="final-title"
     >

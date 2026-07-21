@@ -41,18 +41,22 @@ export function Hero() {
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
-      gsap.fromTo(
-        "[data-hero-fade]",
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.12,
-        },
-      );
+      if (reduced) {
+        gsap.set("[data-hero-fade]", { opacity: 1, y: 0 });
+      } else {
+        gsap.fromTo(
+          "[data-hero-fade]",
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power3.out",
+            delay: 0.12,
+          },
+        );
+      }
 
       const pranzo = root.current?.querySelector(
         '[data-scene="pranzo"]',
@@ -148,24 +152,24 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_55%,rgba(242,235,226,0.2),transparent_42%)] opacity-0"
       />
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-[var(--gutter)] pb-16 pt-28 text-center">
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-[var(--gutter)] pb-20 pt-28 text-center sm:pb-16">
         <p
           data-hero-fade
-          className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-paper/80"
+          className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-paper/85 sm:mb-6 sm:text-[0.7rem] sm:tracking-[0.32em]"
         >
           Современная итальянская кухня
         </p>
 
         <h1
           data-hero-fade
-          className="font-display text-[clamp(3.4rem,10vw,8rem)] font-bold uppercase leading-[0.88] tracking-[0.1em] text-paper"
+          className="font-display text-[clamp(2.75rem,14vw,8rem)] font-bold uppercase leading-[0.88] tracking-[0.08em] text-paper sm:tracking-[0.1em]"
         >
           Vincenzo
         </h1>
 
         <p
           data-hero-fade
-          className="font-display-italic mt-6 max-w-xl text-[clamp(1.45rem,2.8vw,2.15rem)] leading-snug text-paper/95"
+          className="font-display-italic mt-5 max-w-[18rem] text-[clamp(1.25rem,4.5vw,2.15rem)] leading-snug text-paper/95 sm:mt-6 sm:max-w-xl"
         >
           {restaurant.tagline}
         </p>

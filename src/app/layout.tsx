@@ -8,10 +8,10 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { StickyReserve } from "@/components/layout/StickyReserve";
-import { CustomCursor } from "@/components/motion/CustomCursor";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { restaurant } from "@/content/restaurant";
+import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -36,8 +36,10 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(restaurant.site.url),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${restaurant.name} — современная итальянская кухня`,
     template: `%s · ${restaurant.name}`,
@@ -49,14 +51,14 @@ export const metadata: Metadata = {
     "итальянский ресторан",
     "Москва",
     "бронирование стола",
-    "pasta",
     "современная итальянская кухня",
+    "портфолио концепт",
   ],
   authors: [{ name: restaurant.name }],
   openGraph: {
     type: "website",
     locale: restaurant.site.locale,
-    url: restaurant.site.url,
+    url: siteUrl,
     siteName: restaurant.name,
     title: `${restaurant.name} — современная итальянская кухня`,
     description: restaurant.shortDescription,
@@ -65,13 +67,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: restaurant.name,
+        alt: `${restaurant.name} — современная итальянская кухня`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: restaurant.name,
+    title: `${restaurant.name} — современная итальянская кухня`,
     description: restaurant.shortDescription,
     images: ["/opengraph-image"],
   },
@@ -81,6 +83,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+  },
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon", type: "image/png" }],
+    apple: [{ url: "/apple-icon", type: "image/png" }],
   },
 };
 
@@ -105,10 +111,9 @@ export default function RootLayout({
         <JsonLd />
         <SmoothScroll>
           <ScrollProgress />
-          <CustomCursor />
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:px-4 focus:py-2"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-paper focus:px-4 focus:py-2 focus:text-ink focus:shadow-lg"
           >
             Перейти к содержимому
           </a>

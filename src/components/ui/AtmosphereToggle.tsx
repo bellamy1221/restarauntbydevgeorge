@@ -18,7 +18,7 @@ export function AtmosphereToggle({
   return (
     <div
       className={cn(
-        "inline-flex items-center rounded-full border border-white/20 bg-black/25 p-1 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl",
+        "inline-flex max-w-full items-center rounded-full border border-white/20 bg-black/25 p-1 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl",
         className,
       )}
       role="group"
@@ -35,21 +35,20 @@ export function AtmosphereToggle({
           <button
             key={opt.id}
             type="button"
-            data-cursor="hover"
             aria-pressed={active}
             onClick={() => onChange(opt.id)}
             className={cn(
-              "relative min-w-[7.5rem] rounded-full px-5 py-2.5 text-[0.78rem] font-semibold tracking-[0.06em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "relative min-w-[5.75rem] rounded-full px-4 py-2.5 text-[0.72rem] font-semibold tracking-[0.06em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-ink sm:min-w-[7.5rem] sm:px-5 sm:text-[0.78rem]",
               active
                 ? "bg-paper text-ink shadow-sm"
-                : "text-paper/75 hover:text-paper",
+                : "text-paper/80 hover:text-paper",
             )}
           >
             <span className="block leading-none">{opt.label}</span>
             <span
               className={cn(
                 "mt-1 block text-[0.58rem] uppercase tracking-[0.16em]",
-                active ? "text-ink/45" : "text-paper/40",
+                active ? "text-ink/50" : "text-paper/45",
               )}
             >
               {opt.hint}

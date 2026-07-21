@@ -1,6 +1,8 @@
 import { restaurant } from "@/content/restaurant";
+import { getSiteUrl } from "@/lib/site";
 
 export function JsonLd() {
+  const siteUrl = getSiteUrl();
   const data = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
@@ -10,8 +12,8 @@ export function JsonLd() {
     priceRange: restaurant.priceRange,
     telephone: restaurant.contacts.phone,
     email: restaurant.contacts.email,
-    url: restaurant.site.url,
-    image: `${restaurant.site.url}/images/hero/dining.jpg`,
+    url: siteUrl,
+    image: `${siteUrl}/images/hero/dining.jpg`,
     address: {
       "@type": "PostalAddress",
       streetAddress: restaurant.address.street,

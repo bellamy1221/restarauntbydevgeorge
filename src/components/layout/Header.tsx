@@ -24,11 +24,20 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-[var(--gutter)] pt-4 md:pt-5">
       <div
         className={cn(
-          "container-wide mx-auto flex h-14 items-center justify-between rounded-full border px-4 transition-all duration-500 md:h-16 md:px-5",
+          "container-wide mx-auto flex h-14 items-center justify-between rounded-full border px-3 transition-all duration-500 sm:px-4 md:h-16 md:px-5",
           scrolled || open
             ? "border-ink/10 bg-paper/90 text-ink shadow-[0_18px_50px_rgba(28,22,18,0.12)] backdrop-blur-xl"
             : "border-white/15 bg-black/20 text-paper backdrop-blur-md",
@@ -47,7 +56,7 @@ export function Header() {
             <a
               key={item.id}
               href={item.href}
-              className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] opacity-80 transition-opacity hover:opacity-100"
+              className="rounded-sm text-[0.7rem] font-semibold uppercase tracking-[0.14em] opacity-80 transition-opacity hover:opacity-100 focus-visible:opacity-100"
             >
               {item.label}
             </a>
@@ -65,13 +74,13 @@ export function Header() {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Закрыть меню" : "Открыть меню"}
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="relative block h-3.5 w-5">
+            <span className="relative block h-3.5 w-5" aria-hidden>
               <span
                 className={cn(
                   "absolute left-0 top-0 h-px w-full bg-current transition-transform duration-300",
@@ -100,17 +109,20 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-[4.75rem] z-40 mx-[var(--gutter)] overflow-hidden rounded-[1.75rem] border border-ink/10 bg-paper/95 text-ink shadow-[0_30px_80px_rgba(28,22,18,0.18)] backdrop-blur-xl transition-all duration-400 lg:hidden",
           open
-            ? "visible max-h-[80svh] opacity-100"
+            ? "visible max-h-[min(80svh,32rem)] opacity-100"
             : "invisible max-h-0 opacity-0",
         )}
       >
-        <nav className="flex flex-col px-6 py-6" aria-label="Мобильная навигация">
+        <nav
+          className="flex max-h-[min(80svh,32rem)] flex-col overflow-y-auto px-5 py-5 sm:px-6 sm:py-6"
+          aria-label="Мобильная навигация"
+        >
           <ul className="space-y-1">
             {navigation.map((item) => (
               <li key={item.id}>
                 <a
                   href={item.href}
-                  className="block border-b border-ink/8 py-3.5 font-display text-2xl tracking-wide"
+                  className="block border-b border-ink/8 py-3.5 font-display text-[1.35rem] tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] sm:text-2xl"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

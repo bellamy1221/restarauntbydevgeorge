@@ -38,10 +38,10 @@ export function Events() {
             <p className="mt-5 max-w-md text-base text-paper/70">
               {copy.events.lead}
             </p>
-            <p className="mt-4 text-sm text-paper/50">
+            <p className="mt-4 text-sm text-paper/55">
               {restaurant.privateEvents.capacityNote}{" "}
-              {restaurant.privateEvents.minGuestsPlaceholder},{" "}
-              {restaurant.privateEvents.maxGuestsPlaceholder}.
+              {restaurant.privateEvents.minGuests},{" "}
+              {restaurant.privateEvents.maxGuests}.
             </p>
           </Reveal>
 

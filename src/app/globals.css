@@ -12,7 +12,7 @@
   --burgundy: #6a3030;
   --burgundy-deep: #4a2121;
   --terracotta: #9a6a4e;
-  --stone: #8b8176;
+  --stone: #6f675e;
   --metal: #b7aa98;
   --cream: #f7f1e8;
   --smoke: rgba(28, 22, 18, 0.55);
@@ -25,8 +25,8 @@
   --ease-in-out-soft: cubic-bezier(0.45, 0, 0.55, 1);
 
   --nav-h: 4.5rem;
-  --section-y: clamp(5.5rem, 13vw, 10rem);
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --section-y: clamp(4.5rem, 12vw, 10rem);
+  --gutter: clamp(1rem, 4vw, 3.5rem);
   --radius-sm: 0.85rem;
   --radius-md: 1.35rem;
   --radius-lg: 1.85rem;
@@ -81,7 +81,8 @@
     letter-spacing: 0.01em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* clip avoids ScrollTrigger pin measurement bugs from overflow-x: hidden */
+    overflow-x: clip;
   }
 
   ::selection {
@@ -187,11 +188,6 @@
   }
 }
 
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -209,11 +205,6 @@ html.has-custom-cursor * {
   .animate-marquee,
   .animate-marquee-reverse {
     animation: none !important;
-  }
-
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: auto !important;
   }
 }
 

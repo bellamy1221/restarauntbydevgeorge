@@ -12,12 +12,14 @@ type TextRevealProps = {
   text: string;
   className?: string;
   as?: "h1" | "h2" | "h3" | "p";
+  id?: string;
 };
 
 export function TextReveal({
   text,
   className,
   as: Tag = "h2",
+  id,
 }: TextRevealProps) {
   const root = useRef<HTMLElement>(null);
 
@@ -56,9 +58,12 @@ export function TextReveal({
   const parts = text.split(" ");
 
   return (
-    <Tag ref={root as never} className={cn(className)}>
+    <Tag ref={root as never} id={id} className={cn(className)}>
       {parts.map((word, i) => (
-        <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-[0.12em] align-bottom">
+        <span
+          key={`${word}-${i}`}
+          className="inline-block overflow-hidden pb-[0.12em] align-bottom"
+        >
           <span data-word className="inline-block will-change-transform">
             {word}
             {i < parts.length - 1 ? "\u00A0" : ""}

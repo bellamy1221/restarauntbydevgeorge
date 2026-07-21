@@ -36,7 +36,7 @@ export function Wordmark({
   return (
     <Link
       href={href}
-      className="inline-flex items-center focus-visible:outline-none"
+      className="inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2"
       aria-label="VINCENZO — на главную"
     >
       {content}

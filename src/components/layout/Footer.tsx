@@ -74,7 +74,7 @@ export function Footer() {
                 {restaurant.hours.map((h) => (
                   <li key={h.days} className="flex justify-between gap-4">
                     <span>{h.days}</span>
-                    <span className="text-paper/60">{h.time}</span>
+                    <span className="text-paper/65">{h.time}</span>
                   </li>
                 ))}
               </ul>
@@ -82,16 +82,27 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-paper/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3 text-sm text-paper/50">
-            <Monogram className="border-paper/30 text-paper/70" />
-            <span>
-              © {year} {restaurant.name}
-            </span>
+        <div className="mt-16 flex flex-col gap-4 border-t border-paper/10 pt-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 text-sm text-paper/55">
+              <Monogram className="border-paper/30 text-paper/70" />
+              <span>
+                © {year} {restaurant.name}
+              </span>
+            </div>
+            <p className="max-w-md text-xs leading-relaxed text-paper/45">
+              {restaurant.portfolioNote}
+            </p>
           </div>
-          <div className="flex flex-wrap gap-6 text-sm text-paper/50">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-paper/55">
             {restaurant.social.map((s) => (
-              <a key={s.label} href={s.href} className="link-underline">
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline"
+              >
                 {s.label}
               </a>
             ))}
@@ -101,7 +112,7 @@ export function Footer() {
             <a href={restaurant.legal.terms} className="link-underline">
               Условия
             </a>
-            <span>{restaurant.legal.entity}</span>
+            <span className="text-paper/40">{restaurant.legal.entity}</span>
           </div>
         </div>
       </div>

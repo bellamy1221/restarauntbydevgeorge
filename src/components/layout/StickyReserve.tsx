@@ -11,15 +11,26 @@ export function StickyReserve() {
     const onScroll = () => {
       const hero = document.getElementById("top");
       const reservation = document.getElementById("reservation");
+      const finalCta = document.getElementById("final-cta");
       const pastHero = window.scrollY > (hero?.offsetHeight ?? 600) * 0.55;
       const rect = reservation?.getBoundingClientRect();
       const nearForm =
         rect != null && rect.top < window.innerHeight && rect.bottom > 0;
-      setVisible(pastHero && !nearForm);
+      const ctaRect = finalCta?.getBoundingClientRect();
+      const nearFooter =
+        ctaRect != null && ctaRect.top < window.innerHeight * 0.85;
+      const doc = document.documentElement;
+      const nearPageEnd =
+        window.scrollY + window.innerHeight >= doc.scrollHeight - 48;
+      setVisible(pastHero && !nearForm && !nearFooter && !nearPageEnd);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (

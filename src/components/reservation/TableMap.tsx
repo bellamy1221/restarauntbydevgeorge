@@ -37,18 +37,17 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
+        <div className="min-w-0">
           <p className="text-[0.7rem] uppercase tracking-[0.16em] text-stone">
             Выберите стол
           </p>
-          <p className="mt-1 text-sm text-ink/55">
-            Интерактивный план зала. Статусы — sample, для живой загрузки
-            подключите систему бронирования.
+          <p className="mt-1 max-w-md text-sm leading-relaxed text-ink/60">
+            Интерактивный план зала. Статусы — демонстрационные для портфолио.
           </p>
         </div>
         <div
-          className="flex flex-wrap gap-1"
+          className="-mx-1 flex max-w-full gap-1 overflow-x-auto px-1 pb-1"
           role="tablist"
           aria-label="Зоны зала"
         >
@@ -66,12 +65,11 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
               type="button"
               role="tab"
               aria-selected={zone === id}
-              data-cursor="hover"
               className={cn(
-                "rounded-full px-3 py-2 text-[0.65rem] uppercase tracking-[0.12em] transition-colors",
+                "shrink-0 rounded-full px-3 py-2 text-[0.65rem] uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-2",
                 zone === id
                   ? "bg-ink text-paper"
-                  : "bg-ink/[0.04] text-ink/55 hover:text-ink",
+                  : "bg-ink/[0.04] text-ink/60 hover:text-ink",
               )}
               onClick={() => setZone(id)}
             >
@@ -83,49 +81,47 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
 
       <div className="grid gap-4 lg:grid-cols-[1.4fr_0.8fr]">
         <div
-          className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-ink/10 bg-[linear-gradient(145deg,#ebe3d7_0%,#ddd2c3_45%,#d4c7b6_100%)]"
-          role="img"
+          className="relative aspect-[4/3] w-full max-w-full overflow-hidden rounded-[1.25rem] border border-ink/10 bg-[linear-gradient(145deg,#ebe3d7_0%,#ddd2c3_45%,#d4c7b6_100%)] sm:rounded-[1.75rem]"
+          role="group"
           aria-label="План зала VINCENZO"
         >
-          {/* Room architecture hints */}
           <div className="absolute inset-x-[8%] top-[8%] h-[3%] rounded-full bg-ink/10" />
           <div className="absolute bottom-[10%] left-[8%] right-[30%] h-px bg-ink/10" />
           <div className="absolute bottom-[18%] right-[6%] top-[12%] w-[18%] rounded-sm border border-dashed border-ink/15 bg-ink/[0.03]">
-            <span className="absolute left-1/2 top-3 -translate-x-1/2 text-[0.55rem] uppercase tracking-[0.16em] text-ink/35">
+            <span className="absolute left-1/2 top-2 -translate-x-1/2 text-[0.5rem] uppercase tracking-[0.14em] text-ink/40 sm:top-3 sm:text-[0.55rem]">
               Бар
             </span>
           </div>
           <div className="absolute bottom-[8%] right-[6%] h-[22%] w-[22%] rounded-sm border border-ink/10 bg-burgundy/[0.06]">
-            <span className="absolute left-1/2 top-2 -translate-x-1/2 text-[0.55rem] uppercase tracking-[0.16em] text-burgundy/50">
+            <span className="absolute left-1/2 top-1.5 -translate-x-1/2 text-[0.5rem] uppercase tracking-[0.14em] text-burgundy/55 sm:top-2 sm:text-[0.55rem]">
               Private
             </span>
           </div>
-          <div className="pointer-events-none absolute left-[6%] top-[10%] bottom-[12%] w-px bg-gradient-to-b from-transparent via-ink/15 to-transparent" />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 text-[0.55rem] uppercase tracking-[0.2em] text-ink/30">
+          <div className="pointer-events-none absolute bottom-[12%] left-[6%] top-[10%] w-px bg-gradient-to-b from-transparent via-ink/15 to-transparent" />
+          <span className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-[0.5rem] uppercase tracking-[0.18em] text-ink/35 sm:left-3 sm:text-[0.55rem]">
             Окна
           </span>
 
           {tables.map((table) => {
             const fits = table.seats >= guests;
-            const disabled =
-              table.status !== "available" || !fits;
+            const disabled = table.status !== "available" || !fits;
             const active = selectedId === table.id;
 
             return (
               <button
                 key={table.id}
                 type="button"
-                data-cursor="hover"
                 disabled={disabled}
                 aria-pressed={active}
-                aria-label={`Стол ${table.label}, ${table.seats} мест, ${zoneLabels[table.zone]}, ${statusLabel[table.status]}`}
+                aria-label={`Стол ${table.label}, ${table.seats} мест, ${zoneLabels[table.zone]}, ${statusLabel[table.status]}${!fits ? ", мало мест" : ""}`}
                 className={cn(
-                  "absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  table.shape === "round" ? "rounded-full" : "rounded-2xl",
+                  "absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus)] focus-visible:ring-offset-1",
+                  table.shape === "round" ? "rounded-full" : "rounded-xl sm:rounded-2xl",
                   disabled && "cursor-not-allowed opacity-35",
-                  !disabled && "hover:scale-105 hover:shadow-[0_12px_40px_rgba(28,22,18,0.18)]",
+                  !disabled &&
+                    "hover:scale-105 hover:shadow-[0_12px_40px_rgba(28,22,18,0.18)]",
                   active
-                    ? "z-10 border-burgundy bg-burgundy text-paper shadow-[0_16px_50px_rgba(106,48,48,0.35)] scale-105"
+                    ? "z-10 scale-105 border-burgundy bg-burgundy text-paper shadow-[0_16px_50px_rgba(106,48,48,0.35)]"
                     : table.status === "held"
                       ? "border-terracotta/50 bg-terracotta/15 text-ink"
                       : "border-ink/20 bg-paper/80 text-ink backdrop-blur-[2px]",
@@ -142,32 +138,37 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
                 onBlur={() => setFocusId(null)}
                 onClick={() => onSelect(active ? null : table)}
               >
-                <span className="font-display text-sm tracking-wide md:text-base">
+                <span className="font-display text-[0.7rem] tracking-wide sm:text-sm md:text-base">
                   {table.label}
                 </span>
-                <span className="text-[0.55rem] uppercase tracking-[0.12em] opacity-70">
-                  {table.seats} мест
+                <span className="text-[0.5rem] uppercase tracking-[0.1em] opacity-70 sm:text-[0.55rem]">
+                  {table.seats}
+                  <span className="hidden sm:inline"> мест</span>
                 </span>
               </button>
             );
           })}
         </div>
 
-        <div className="flex flex-col justify-between rounded-[1.75rem] border border-ink/10 bg-paper p-5 md:p-6">
+        <div className="flex flex-col justify-between rounded-[1.25rem] border border-ink/10 bg-paper p-4 sm:rounded-[1.75rem] sm:p-5 md:p-6">
           <div>
             <p className="text-[0.7rem] uppercase tracking-[0.16em] text-stone">
               Карточка стола
             </p>
             {focus ? (
               <div className="mt-4 space-y-3">
-                <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-ink">
+                <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">
                   Стол {focus.label}
                 </h3>
-                <p className="text-sm text-ink/60">
+                <p className="text-sm text-ink/65">
                   {zoneLabels[focus.zone]} · {focus.seats}{" "}
-                  {focus.seats === 1 ? "место" : focus.seats < 5 ? "места" : "мест"}
+                  {focus.seats === 1
+                    ? "место"
+                    : focus.seats < 5
+                      ? "места"
+                      : "мест"}
                 </p>
-                <p className="text-sm text-ink/55">
+                <p className="text-sm text-ink/60">
                   {focus.note ?? "Комфортное место в зале VINCENZO."}
                 </p>
                 <p
@@ -179,28 +180,34 @@ export function TableMap({ guests, selectedId, onSelect }: TableMapProps) {
                   )}
                 >
                   {statusLabel[focus.status]}
-                  {focus.seats < guests ? " · мало мест для вашей компании" : ""}
+                  {focus.seats < guests
+                    ? " · мало мест для вашей компании"
+                    : ""}
                 </p>
               </div>
             ) : (
-              <p className="mt-4 text-sm leading-relaxed text-ink/50">
-                Наведите или выберите стол на плане. Можно оставить заявку и без
-                выбора — просто укажите пожелания в комментарии.
+              <p className="mt-4 text-sm leading-relaxed text-ink/55">
+                Выберите стол на плане или оставьте заявку без выбора — укажите
+                пожелания в комментарии.
               </p>
             )}
           </div>
 
-          <div className="mt-8 space-y-2 border-t border-ink/10 pt-4 text-[0.7rem] text-ink/45">
+          <div className="mt-8 space-y-2 border-t border-ink/10 pt-4 text-[0.7rem] text-ink/55">
             <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-burgundy" /> Свободен
+              <span className="h-2.5 w-2.5 rounded-full bg-burgundy" aria-hidden />{" "}
+              Свободен
             </div>
             <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-terracotta/70" />{" "}
+              <span
+                className="h-2.5 w-2.5 rounded-full bg-terracotta/70"
+                aria-hidden
+              />{" "}
               Подтверждается
             </div>
             <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-ink/25" /> Занят / не
-              подходит по местам
+              <span className="h-2.5 w-2.5 rounded-full bg-ink/25" aria-hidden />{" "}
+              Занят / не подходит по местам
             </div>
           </div>
         </div>
