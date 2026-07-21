@@ -108,3 +108,4 @@ pnpm start
 - OG image: `src/app/opengraph-image.tsx`
 - Favicon: `src/app/icon.tsx`
 - Schema.org Restaurant: `src/components/seo/JsonLd.tsx` (placeholder-данные)
+# restarauntbydevgeorge
